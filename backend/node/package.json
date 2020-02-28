@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "johnny-five": "^1.4.0",
-    "node-bluetooth": "git+https://github.com/song940/node-bluetooth.git"
+    "johnny-five": "^1.4.0"
   }
 }
