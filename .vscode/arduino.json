@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "backend/arduino/blink.ino",
+    "port": "/dev/ttyACM0",
+    "output": ".build/"
+}
