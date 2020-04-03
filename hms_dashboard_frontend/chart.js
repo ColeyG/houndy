@@ -1,14 +1,12 @@
 /* globals Chart:false, feather:false */
 
 (function () {
-  'use strict'
-
-  feather.replace()
+  feather.replace();
 
   // Graphs
-  var ctx = document.getElementById('myChart')
+  const ctx = document.getElementById('myChart');
   // eslint-disable-next-line no-unused-vars
-  var myChart = new Chart(ctx, {
+  const myChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: [
@@ -18,7 +16,7 @@
         'Wednesday',
         'Thursday',
         'Friday',
-        'Saturday'
+        'Saturday',
       ],
       datasets: [{
         data: [
@@ -28,26 +26,26 @@
           24003,
           23489,
           24092,
-          12034
+          12034,
         ],
         lineTension: 0,
         backgroundColor: 'transparent',
         borderColor: '#007bff',
         borderWidth: 4,
-        pointBackgroundColor: '#007bff'
-      }]
+        pointBackgroundColor: '#007bff',
+      }],
     },
     options: {
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: false
-          }
-        }]
+            beginAtZero: false,
+          },
+        }],
       },
       legend: {
-        display: false
-      }
-    }
-  })
-}())
+        display: false,
+      },
+    },
+  });
+}());
