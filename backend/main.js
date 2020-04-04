@@ -16,7 +16,23 @@ const videoStamp = (length) => {
 const board = new five.Board();
 let motion;
 let gas;
+let gasRecent;
+const gasMinDelta = 5;
+let light;
+let lightRecent;
+const ligthMinDelta = 5;
 let cameraOn = false;
+
+const checkDelta = (current, last, minDelta) => {
+  let delta = current - last;
+  if (delta < 0) {
+    delta *= -1;
+  }
+  if (delta > minDelta) {
+    return true;
+  }
+  return false;
+};
 
 const clipRecord = () => {
   const camera = new Picam({
@@ -41,9 +57,18 @@ const clipRecord = () => {
 board.on('ready', () => {
   motion = new five.Motion(7);
   gas = new five.Sensor('A0');
+  light = new five.Sensor('A1');
 
   gas.scale(0, 100).on('change', function () {
-    console.log(`Gas: ${this.value}`);
+    if (checkDelta(this.value, gasRecent, gasMinDelta)) {
+      console.log(`Gas: ${this.value}`);
+    }
+  });
+
+  light.on('change', function () {
+    if (checkDelta(this.value, lightRecent, lightMinDelta)) {
+      console.log(`Light: ${this.value}`);
+    }
   });
 
   motion.on('calibrated', () => {
