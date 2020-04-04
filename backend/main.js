@@ -63,10 +63,13 @@ board.on('ready', () => {
     if (checkDelta(this.value, gasRecent, gasMinDelta)) {
       console.log(`Gas: ${this.value}`);
       gasRecent = this.value;
+      if (this.value > 90) {
+        // ALERT HERE
+      }
     }
   });
 
-  light.scale(0, 199).on('change', function () {
+  light.scale(0, 100).on('change', function () {
     if (checkDelta(this.value, lightRecent, lightMinDelta)) {
       console.log(`Light: ${this.value}`);
       lightRecent = this.value;
