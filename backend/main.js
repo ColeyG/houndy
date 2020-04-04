@@ -15,7 +15,7 @@ const videoStamp = (length) => {
 
 const camera = new Picam({
   mode: 'video',
-  output: `${__dirname}/clips/${videoStamp(5)}.h264`,
+  output: `${__dirname}/clips/some.h264`,
   width: 1920,
   height: 1080,
   timeout: 10000,
@@ -27,7 +27,7 @@ let motion;
 let cameraOn = false;
 
 const clipRecord = () => {
-  camera.record()
+  camera.record(`${videoStamp(5)}.h264`)
     .then((result) => {
       console.log('Recorded Clip');
       cameraOn = false;
