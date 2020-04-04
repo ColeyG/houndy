@@ -20,7 +20,7 @@ let cameraOn = false;
 const clipRecord = () => {
   const camera = new Picam({
     mode: 'video',
-    output: `${__dirname}/clips/${videoStamp}.h264`,
+    output: `${__dirname}/clips/${videoStamp(5)}.h264`,
     width: 1920,
     height: 1080,
     timeout: 10000,
