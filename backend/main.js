@@ -60,12 +60,14 @@ board.on('ready', () => {
   light = new five.Sensor('A1');
 
   gas.scale(0, 100).on('change', function () {
+    console.log(`Gas: ${this.value}`);
     if (checkDelta(this.value, gasRecent, gasMinDelta)) {
       console.log(`Gas: ${this.value}`);
     }
   });
 
   light.on('change', function () {
+    console.log(`Light: ${this.value}`);
     if (checkDelta(this.value, lightRecent, lightMinDelta)) {
       console.log(`Light: ${this.value}`);
     }
