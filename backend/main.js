@@ -16,10 +16,10 @@ const videoStamp = (length) => {
 const board = new five.Board();
 let motion;
 let gas;
-let gasRecent;
+let gasRecent = 0;
 const gasMinDelta = 5;
 let light;
-let lightRecent;
+let lightRecent = 0;
 const lightMinDelta = 5;
 let cameraOn = false;
 
