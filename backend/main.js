@@ -13,21 +13,21 @@ const videoStamp = (length) => {
   return `${timeStamp(date)}-${resp}`;
 };
 
-const camera = new Picam({
-  mode: 'video',
-  output: `${__dirname}/clips/some.h264`,
-  width: 1920,
-  height: 1080,
-  timeout: 10000,
-  nopreview: true,
-});
-
 const board = new five.Board();
 let motion;
 let cameraOn = false;
 
 const clipRecord = () => {
-  camera.record(`${videoStamp(5)}.h264`)
+  const camera = new Picam({
+    mode: 'video',
+    output: `${__dirname}/clips/${videoStamp}.h264`,
+    width: 1920,
+    height: 1080,
+    timeout: 10000,
+    nopreview: true,
+  });
+
+  camera.record()
     .then((result) => {
       console.log('Recorded Clip');
       cameraOn = false;
