@@ -66,7 +66,7 @@ board.on('ready', () => {
     }
   });
 
-  light.on('change', function () {
+  light.scale(0, 199).on('change', function () {
     if (checkDelta(this.value, lightRecent, lightMinDelta)) {
       console.log(`Light: ${this.value}`);
       lightRecent = this.value;
