@@ -42,8 +42,8 @@ board.on('ready', () => {
   motion = new five.Motion(7);
   gas = new five.Sensor('A0');
 
-  gas.scaleTo(0, 100).on('change', function () {
-    console.log(`Gas: ${this, value}`);
+  gas.scale(0, 100).on('change', function () {
+    console.log(`Gas: ${this.value}`);
   });
 
   motion.on('calibrated', () => {
