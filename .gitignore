@@ -1,3 +1,5 @@
 frontend/node_modules
 backend/node_modules
+server/node_modules
+server/config/config.json
 .build

@@ -1,0 +1,8 @@
+{
+  "sessionSecret": "SomeRandomSecret",
+  "mongoSession": "localhost",
+  "mongoName": "riposte",
+  "mongoUser": "user",
+  "mongoPass": "password",
+  "remoteUrl": "localhost"
+}
