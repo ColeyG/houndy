@@ -23,6 +23,7 @@ board.on('ready', () => {
   motion.on('motionstart', () => {
     console.log('motionstart');
     motionDetected = true;
+    clipRecord();
   });
 
   motion.on('motionend', () => {
