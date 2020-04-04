@@ -20,7 +20,7 @@ let gasRecent;
 const gasMinDelta = 5;
 let light;
 let lightRecent;
-const ligthMinDelta = 5;
+const lightMinDelta = 5;
 let cameraOn = false;
 
 const checkDelta = (current, last, minDelta) => {
