@@ -15,6 +15,7 @@ const videoStamp = (length) => {
 
 const board = new five.Board();
 let motion;
+let gas;
 let cameraOn = false;
 
 const clipRecord = () => {
@@ -39,6 +40,11 @@ const clipRecord = () => {
 
 board.on('ready', () => {
   motion = new five.Motion(7);
+  gas = new five.Sensor('A0');
+
+  gas.scaleTo(0, 100).on('change', function () {
+    console.log(`Gas: ${this, value}`);
+  });
 
   motion.on('calibrated', () => {
     console.log('calibrated');
