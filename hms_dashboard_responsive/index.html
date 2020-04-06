@@ -1,0 +1,273 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>HMS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar fixed-top flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0 py-1" href="/">
+        <img src="images/houndy_vertical_logo.svg" />
+      </a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">
+            John Doe <img src="images/profile-pic.png" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+<div class="container-fluid">
+  <div class="row main-content">
+
+    <!-- START OF SIDE MENU -->
+    <nav class="col-md-2 d-md-block sidebar">
+      <div class="sidebar-sticky">
+        <div class="accordion" id="accordionMenu">
+          <ul class="nav flex-column p-2">
+            <li class="nav-item mb-1">
+              <button class="btn btn-md btn-primary text-left" data-toggle="collapse" data-target="#home_links">
+                <span data-feather="home" class="mr-2"></span> Home
+              </button>
+            </li>
+            <li id="home_links" class="collapse show" data-parent="#accordionMenu">
+              <ul class="nav flex-column">
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="alert-circle" class="sub-link mx-3"></span> Alert
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left" id="btn-temperature">
+                    <span data-feather="thermometer" class="sub-link mx-3"></span> Temperature
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left" id="btn-camera">
+                    <span data-feather="camera" class="sub-link mx-3"></span> Camera
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="users" class="sub-link mx-3"></span> Busyness
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="sun" class="sub-link mx-3"></span> Lights
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item mb-1">
+              <button class="btn btn-md btn-primary text-left" data-toggle="collapse" data-target="#history_links">
+                <span data-feather="clock" class="mr-2"></span> History
+              </button>
+            </li>
+            <li id="history_links" class="collapse" data-parent="#accordionMenu">
+              <ul class="nav flex-column">
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="calendar" class="sub-link mx-3"></span> Calendar
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="activity" class="sub-link mx-3"></span> Graphs
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="clipboard" class="sub-link mx-3"></span> Activity
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="thermometer" class="sub-link mx-3"></span> Temperature
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item mb-1">
+              <button class="btn btn-md btn-primary text-left" data-toggle="collapse" data-target="#settings_links">
+                <span data-feather="settings" class="mr-2"></span> Settings
+              </button>
+            </li>
+            <li id="settings_links" class="collapse" data-parent="#accordionMenu">
+              <ul class="nav flex-column">
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="bell" class="sub-link mx-3"></span> Notifications
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="user-check" class="sub-link mx-3"></span> Users
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="layout" class="sub-link mx-3"></span> Preferences
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="sliders" class="sub-link mx-3"></span> Assorted Tweaks
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="bluetooth" class="sub-link mx-3"></span> Connectivity
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item mb-1">
+              <button class="btn btn-md btn-primary text-left" data-toggle="collapse" data-target="#guide_links">
+                <span data-feather="book" class="mr-2"></span> Guide
+              </button>
+            </li>
+            <li id="guide_links" class="collapse" data-parent="#accordionMenu">
+              <ul class="nav flex-column">
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="help-circle" class="sub-link mx-3"></span> Help
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="book-open" class="sub-link mx-3"></span> User Guide
+                  </button>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-md btn-secondary text-left">
+                    <span data-feather="info" class="sub-link mx-3"></span> About
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+      </div>
+    </nav>
+    <!-- END OF SIDE MENU -->
+
+
+
+
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 dashboard-main">
+
+      <!-- START OF HEADING -->
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Welcome to your Dashboard</h1>
+      </div>
+      <!-- END OF HEADING -->
+
+      <!-- START OF ROW 1 -->
+      <div class="d-flex mb-4 content-section">
+        <div class="card shadow-sm rounded flex-grow-1 mr-3">
+          <div class="card-title">
+            ALERTS & NOTIFICATIONS
+          </div>
+          <div class="card-body pt-1">
+            <ul>
+              <li>Need any help on installing our system please contact out toll free number 1800-234-3420 or go through our guides page.</li>
+              <li>Lights are turned on. </li>
+              <li>Need any help on installing our system please contact out toll free number 1800-234-3420 or go through our guides page.</li>
+              <li>Air quality shows a noticeable difference.</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="card shadow-sm rounded w-50">
+          <div class="card-title">
+            NEWS
+          </div>
+          <div class="card-body pt-1">
+            <div class="d-flex">
+              <p>The world is on the verge of something big with AI, and Canada could be a leader. The potential is exciting. Charlie, the protagonist, is a mediocre day trader who becomes rich after he lets the robotic flatmate he purchased take control of his desktop. The robots turn out to be buggy and things go awry, but maybe not so badly awry that the  defects couldn’t be fixed in an updated version.</p>
+              <img src="images/news-pic.png" class="ml-2" style="width: 100px; height: 150px;" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END OF ROW 1 -->
+
+      <!-- START OF ROW 2 -->
+      <div class="d-flex mb-4 content-section">
+        <div id="camera-section" class="card shadow-sm rounded flex-grow-1 mr-3">
+          <div class="card-title">
+            CAMERA
+          </div>
+          <div class="card-body pt-1">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/v0nKgVu3qTc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+  
+        <div class="card shadow-sm rounded w-50">
+          <div class="card-title">
+            DAILY REPORTS
+          </div>
+          <div class="card-body pt-1">
+            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- START OF ROW 2 -->
+
+      <!-- START OF ROW 3 -->
+      <div class="d-flex mb-4 content-section content-section-quarter">
+        <div id="temperature-section" class="card shadow-sm rounded flex-fill mr-3">
+          <div class="card-title">
+            Temperature
+          </div>
+          <div class="card-body pt-1">
+            content goes here...
+          </div>
+        </div>
+        <div class="card shadow-sm rounded flex-fill mr-3">
+          <div class="card-title">
+            Air Quality
+          </div>
+          <div class="card-body pt-1">
+            content goes here...
+          </div>
+        </div>
+        <div class="card shadow-sm rounded flex-fill mr-3">
+          <div class="card-title">
+            Motion Sensor
+          </div>
+          <div class="card-body pt-1">
+            content goes here...
+          </div>
+        </div>
+        <div class="card shadow-sm rounded flex-fill">
+          <div class="card-title">
+            Lights
+          </div>
+          <div class="card-body pt-1">
+            content goes here...
+          </div>
+        </div>
+      </div>
+      <!-- START OF ROW 3 -->
+
+    </main>
+  </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="chart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
