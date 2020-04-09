@@ -35,9 +35,10 @@ const checkDelta = (current, last, minDelta) => {
 };
 
 const clipRecord = () => {
+  const clipName = `${__dirname}/clips/${new Date()}-${videoStamp(5)}.h264`;
   const camera = new Picam({
     mode: 'video',
-    output: `${__dirname}/clips/${videoStamp(5)}.h264`,
+    output: clipName,
     width: 1920,
     height: 1080,
     timeout: 10000,
@@ -46,11 +47,12 @@ const clipRecord = () => {
 
   camera.record()
     .then((result) => {
-      console.log('Recorded Clip');
+      console.log(`Recorded Clip: ${clipName}`);
       cameraOn = false;
     })
     .catch((error) => {
       console.log(`Clip Error: ${error}`);
+      cameraOn = false;
     });
 };
 
