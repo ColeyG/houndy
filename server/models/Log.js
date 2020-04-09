@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
-const logSchema = new mognoose.Schema({
-  temp: {
+const logSchema = new mongoose.Schema({
+  logType: {
+    type: String,
+    required: true,
+  },
+  amount: {
     type: Number,
   },
-  gas: {
-    type: Number,
-  },
-  light: {
+  time: {
     type: Number,
   },
 });
