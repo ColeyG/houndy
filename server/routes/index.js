@@ -5,6 +5,14 @@ const router = express.Router();
 
 // TODO: Save Clips
 
+router.get('/clips/:uid', (req, res, next) => {
+
+});
+
+router.post('/clipSave', (req, res, next) => {
+
+});
+
 router.get('/light/:uid', (req, res, next) => {
   const id = req.params.uid;
 
