@@ -3,6 +3,13 @@ const Log = require('../models/Log');
 
 const router = express.Router();
 
+router.get('/ping', (req, res, next) => {
+  res
+    .status(200)
+    .contentType('text/plain')
+    .end('Pong');
+});
+
 // TODO: Save Clips
 
 router.get('/clips/:uid', (req, res, next) => {
