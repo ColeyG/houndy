@@ -1,5 +1,7 @@
 const five = require('johnny-five');
 const Picam = require('pi-camera');
+const http = require('http');
+const config = require('./config/config.json');
 
 const timeStamp = (dateObject) => `${dateObject.getFullYear()}-${dateObject.getMonth() + 1}-${dateObject.getDate()}`;
 
@@ -56,6 +58,30 @@ const clipRecord = () => {
     });
 };
 
+// TODO: Write a good wrapper for this:
+
+const serverRequest = (logType, amount) => {
+  http.request({
+    hostname: `${config.remote}`,
+    port: config.port,
+    path: `/${logType}/${amount}`,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+  }, (response) => {
+    let str = '';
+    response.on('data', (chunk) => {
+      str += chunk;
+    });
+
+    response.on('end', () => {
+      const data = JSON.parse(str);
+      console.log(data);
+    });
+  }).end();
+};
+
 board.on('ready', () => {
   motion = new five.Motion(7);
   gas = new five.Sensor('A0');
@@ -63,18 +89,18 @@ board.on('ready', () => {
 
   gas.scale(0, 100).on('change', function () {
     if (checkDelta(this.value, gasRecent, gasMinDelta)) {
-      console.log(`Gas: ${this.value}`);
       gasRecent = this.value;
       if (this.value > 90) {
         // ALERT HERE
       }
+      serverRequest('gas', this.value);
     }
   });
 
   light.scale(0, 100).on('change', function () {
     if (checkDelta(this.value, lightRecent, lightMinDelta)) {
-      console.log(`Light: ${this.value}`);
       lightRecent = this.value;
+      serverRequest('light', this.value);
     }
   });
 
