@@ -38,6 +38,7 @@ const checkDelta = (current, last, minDelta) => {
 
 const clipRecord = () => {
   const clipName = `${__dirname}/clips/${new Date()}-${videoStamp(5)}.h264`;
+  console.log(clipName);
   const camera = new Picam({
     mode: 'video',
     output: clipName,
