@@ -73,7 +73,7 @@ const clipRecord = () => {
         });
 
         response.on('end', () => {
-          const data = JSON.parse(str);
+          const data = str;
           console.log(data);
         });
       }).end();
