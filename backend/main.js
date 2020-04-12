@@ -1,6 +1,7 @@
 const five = require('johnny-five');
 const Picam = require('pi-camera');
 const http = require('http');
+const FormData = require('form-data');
 const config = require('./config/config.json');
 
 const timeStamp = (dateObject) => `${dateObject.getFullYear()}-${dateObject.getMonth() + 1}-${dateObject.getDate()}`;
