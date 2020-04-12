@@ -64,7 +64,7 @@ const clipRecord = () => {
         method: 'POST',
         body: data,
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'multipart/form-data',
         },
       }, (response) => {
         let str = '';
