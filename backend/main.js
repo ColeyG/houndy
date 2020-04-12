@@ -2,6 +2,7 @@ const five = require('johnny-five');
 const Picam = require('pi-camera');
 const http = require('http');
 const FormData = require('form-data');
+const fs = require('fs');
 const config = require('./config/config.json');
 
 const timeStamp = (dateObject) => `${dateObject.getFullYear()}-${dateObject.getMonth() + 1}-${dateObject.getDate()}`;
@@ -54,7 +55,7 @@ const clipRecord = () => {
       cameraOn = false;
 
       const data = new FormData();
-      data.append('video_file', clipName);
+      data.append('video_file', fs.createReadStream(clipName));
 
       http.request({
         hostname: `${config.remote}`,
