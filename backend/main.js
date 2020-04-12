@@ -51,6 +51,30 @@ const clipRecord = () => {
     .then((result) => {
       console.log(`Recorded Clip: ${clipName}`);
       cameraOn = false;
+
+      const data = new FormData();
+      data.append('video_file', clipName);
+
+      http.request({
+        hostname: `${config.remote}`,
+        port: config.port,
+        path: '/clipSave',
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+      }, (response) => {
+        let str = '';
+        response.on('data', (chunk) => {
+          str += chunk;
+        });
+
+        response.on('end', () => {
+          const data = JSON.parse(str);
+          console.log(data);
+        });
+      }).end();
     })
     .catch((error) => {
       console.log(`Clip Error: ${error}`);
