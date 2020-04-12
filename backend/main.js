@@ -64,7 +64,7 @@ const clipRecord = () => {
         method: 'POST',
         body: data,
         headers: {
-          'Content-Type': '',
+          'Content-Type': 'multipart/form-data',
         },
       }, (response) => {
         data.append('video_file', fs.createReadStream(clipName));
