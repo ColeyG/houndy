@@ -1,7 +1,12 @@
 const express = require('express');
+const multer = require('multer');
 const Log = require('../models/Log');
 
 const router = express.Router();
+
+const upload = multer({
+  dest: './upload/',
+});
 
 router.get('/ping', (req, res, next) => {
   res
@@ -16,8 +21,28 @@ router.get('/clips/:uid', (req, res, next) => {
 
 });
 
-router.post('/clipSave', (req, res, next) => {
+router.post('/clipSave', upload.single('video_file'), (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
 
+  const tempPath = req.file.path;
+  const newPath = req.file.originalname;
+  newPath.replace(':', '');
+  const targetPath = `./upload/${newPath}`;
+
+  fs.rename(tempPath, targetPath, (err) => {
+    if (err) {
+      const message = err.toString();
+      res
+        .status(200)
+        .contentType('text/json')
+        .end(`{"error": "${message}"}`);
+    } else {
+      res
+        .status(200)
+        .contentType('text/json')
+        .end('{"success": "Some String"}');
+    }
+  });
 });
 
 router.get('/light/:uid', (req, res, next) => {
