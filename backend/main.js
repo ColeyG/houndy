@@ -55,7 +55,7 @@ const clipRecord = () => {
       cameraOn = false;
 
       const data = new FormData();
-      data.append('video_file', fs.createReadStream(clipName));
+
 
       http.request({
         hostname: `${config.remote}`,
@@ -64,9 +64,10 @@ const clipRecord = () => {
         method: 'POST',
         body: data,
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': '',
         },
       }, (response) => {
+        data.append('video_file', fs.createReadStream(clipName));
         let str = '';
         response.on('data', (chunk) => {
           str += chunk;

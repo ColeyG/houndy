@@ -24,10 +24,9 @@ router.get('/clips/:uid', (req, res, next) => {
 router.post('/clipSave', (req, res, next) => {
   console.log(req);
 
-  const tempPath = req.body.video_file.path;
-  const newPath = req.body.video_file.originalname;
-  newPath.replace(':', '');
-  const targetPath = `./upload/${newPath}`;
+  const tempPath = req.body.video_file;
+  const newPath = req.body.video_file;
+  const targetPath = `~/uploads/${newPath}`;
 
   fs.rename(tempPath, targetPath, (err) => {
     if (err) {
