@@ -21,8 +21,8 @@ router.get('/clips/:uid', (req, res, next) => {
 
 });
 
-router.post('/clipSave', upload.single('video_file'), (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+router.post('/clipSave', (req, res, next) => {
+  console.log(req);
 
   const tempPath = req.body.video_file.path;
   const newPath = req.body.video_file.originalname;
