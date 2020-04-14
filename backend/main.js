@@ -3,6 +3,7 @@ const Picam = require('pi-camera');
 const http = require('http');
 const FormData = require('form-data');
 const fs = require('fs');
+const { exec } = require('child_process');
 const config = require('./config/config.json');
 
 const timeStamp = (dateObject) => `${dateObject.getFullYear()}-${dateObject.getMonth() + 1}-${dateObject.getDate()}`;
@@ -38,9 +39,19 @@ const checkDelta = (current, last, minDelta) => {
   return false;
 };
 
+const executeBashCommand = (command) => {
+  exec(`${command}`, (err, stdout, stderr) => {
+    if (err) {
+      // err code here
+    }
+    console.log(stdout);
+  });
+};
+
 const clipRecord = () => {
-  const clipFileName = `${videoStamp(5)}.h264`;
-  const clipName = `${__dirname}/clips/${clipFileName}`;
+  const seed = videoStamp(5);
+  const clipFileName = `${seed}.mp4`;
+  const clipName = `${__dirname}/clips/${seed}.h264`;
   const camera = new Picam({
     mode: 'video',
     output: clipName,
@@ -54,6 +65,8 @@ const clipRecord = () => {
     .then((result) => {
       console.log(`Recorded Clip: ${clipName}`);
       cameraOn = false;
+
+      executeBashCommand('ls');
 
       http.request({
         hostname: `${config.remote}`,
