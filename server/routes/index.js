@@ -1,5 +1,6 @@
 const express = require('express');
 const Log = require('../models/Log');
+const Clip = require('../models/Clip');
 
 const router = express.Router();
 
@@ -17,14 +18,29 @@ router.get('/clips/:uid', (req, res, next) => {
 });
 
 router.post('/clipSave/:uid', (req, res, next) => {
-  const time = new Date();
+  const clipName = req.params.uid;
+  const time = new Date(); // Make this a timestamp!
 
-  res.status(200)
-    .contentType('text/plain')
-    .end(`Clip save ${time}`);
+  const newClip = new Clip({ time, name: clipName });
+
+  newClip.save((err, resp) => {
+    if (err) {
+      res
+        .status(200)
+        .contentType('text/json')
+        .end('{"error": "error saving data"}');
+    } else {
+      res
+        .status(200)
+        .contentType('text/json')
+        .end(`{"success": ${JSON.stringify(resp)}}`);
+    }
+  });
 
   /*
   * I was trying to get this working to save the video files to a remote but restorted to using the pi's storage
+  *
+  *                                                                   - Cole Geerts
   */
 
   // console.log(req);
