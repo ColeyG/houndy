@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const clipSchema = new mognoose.Schema({
+const clipSchema = new mongoose.Schema({
   time: {
     type: Number,
   },
