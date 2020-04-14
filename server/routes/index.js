@@ -23,7 +23,7 @@ router.get('/clips/:uid', (req, res, next) => {
 });
 
 router.post('/clipSave', (req, res, next) => {
-  console.log(req.files.file.path);
+  console.log(req.files);
 
   const tempPath = req.body.video_file;
   const newPath = req.body.video_file;
