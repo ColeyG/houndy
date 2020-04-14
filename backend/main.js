@@ -63,9 +63,6 @@ const clipRecord = () => {
         path: '/clipSave',
         method: 'POST',
         body: data,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
       }, (response) => {
         let str = '';
         response.on('data', (chunk) => {
