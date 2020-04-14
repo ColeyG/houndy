@@ -22,27 +22,33 @@ router.get('/clips/:uid', (req, res, next) => {
 
 });
 
-router.post('/clipSave', upload.single('video_file'), (req, res, next) => {
-  console.log(req);
+router.post('/clipSave/:uid', upload.single('video_file'), (req, res, next) => {
+  console.log(new Date());
 
-  const tempPath = req.body.video_file;
-  const newPath = req.body.video_file;
-  const targetPath = `~/uploads/${newPath}`;
+  /*
+  * I was trying to get this working to save the video files to a remote but restorted to using the pi's storage
+  */
 
-  fs.rename(tempPath, targetPath, (err) => {
-    if (err) {
-      const message = err.toString();
-      res
-        .status(200)
-        .contentType('text/json')
-        .end(`{"error": "${message}"}`);
-    } else {
-      res
-        .status(200)
-        .contentType('text/json')
-        .end('{"success": "Some String"}');
-    }
-  });
+  // console.log(req);
+
+  // const tempPath = req.body.video_file;
+  // const newPath = req.body.video_file;
+  // const targetPath = `~/uploads/${newPath}`;
+
+  // fs.rename(tempPath, targetPath, (err) => {
+  //   if (err) {
+  //     const message = err.toString();
+  //     res
+  //       .status(200)
+  //       .contentType('text/json')
+  //       .end(`{"error": "${message}"}`);
+  //   } else {
+  //     res
+  //       .status(200)
+  //       .contentType('text/json')
+  //       .end('{"success": "Some String"}');
+  //   }
+  // });
 });
 
 router.get('/light/:uid', (req, res, next) => {
