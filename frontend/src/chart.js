@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* globals Chart:false, feather:false */
 
 (function () {
