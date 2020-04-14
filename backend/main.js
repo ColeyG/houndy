@@ -1,5 +1,10 @@
 const five = require('johnny-five');
 const Picam = require('pi-camera');
+const http = require('http');
+const FormData = require('form-data');
+const fs = require('fs');
+const { exec } = require('child_process');
+const config = require('./config/config.json');
 
 const timeStamp = (dateObject) => `${dateObject.getFullYear()}-${dateObject.getMonth() + 1}-${dateObject.getDate()}`;
 
@@ -34,10 +39,23 @@ const checkDelta = (current, last, minDelta) => {
   return false;
 };
 
+const executeBashCommand = (command) => {
+  exec(`${command}`, (err, stdout, stderr) => {
+    if (err) {
+      // err code here
+    }
+    console.log(stdout);
+  });
+};
+
 const clipRecord = () => {
+  const seed = videoStamp(5);
+  const clipOriginalName = `${seed}.h264`;
+  const clipFileName = `${seed}.mp4`;
+  const clipName = `${__dirname}/clips/${seed}.h264`;
   const camera = new Picam({
     mode: 'video',
-    output: `${__dirname}/clips/${videoStamp(5)}.h264`,
+    output: clipName,
     width: 1920,
     height: 1080,
     timeout: 10000,
@@ -46,12 +64,56 @@ const clipRecord = () => {
 
   camera.record()
     .then((result) => {
-      console.log('Recorded Clip');
+      console.log(`Recorded Clip: ${clipName}`);
       cameraOn = false;
+
+      executeBashCommand(`ffmpeg -framerate 24 -i clips/${clipOriginalName} -c copy clips/${clipFileName}`);
+
+      http.request({
+        hostname: `${config.remote}`,
+        port: config.port,
+        path: `/clipSave/${clipFileName}`,
+        method: 'POST',
+      }, (response) => {
+        let str = '';
+        response.on('data', (chunk) => {
+          str += chunk;
+        });
+
+        response.on('end', () => {
+          const data = str;
+          console.log(data);
+        });
+      }).end();
     })
     .catch((error) => {
       console.log(`Clip Error: ${error}`);
+      cameraOn = false;
     });
+};
+
+// TODO: Write a good wrapper for this:
+
+const serverRequest = (logType, amount) => {
+  http.request({
+    hostname: `${config.remote}`,
+    port: config.port,
+    path: `/${logType}/${amount}`,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+  }, (response) => {
+    let str = '';
+    response.on('data', (chunk) => {
+      str += chunk;
+    });
+
+    response.on('end', () => {
+      const data = JSON.parse(str);
+      console.log(data);
+    });
+  }).end();
 };
 
 board.on('ready', () => {
@@ -61,18 +123,18 @@ board.on('ready', () => {
 
   gas.scale(0, 100).on('change', function () {
     if (checkDelta(this.value, gasRecent, gasMinDelta)) {
-      console.log(`Gas: ${this.value}`);
       gasRecent = this.value;
       if (this.value > 90) {
         // ALERT HERE
       }
+      serverRequest('gas', this.value);
     }
   });
 
   light.scale(0, 100).on('change', function () {
     if (checkDelta(this.value, lightRecent, lightMinDelta)) {
-      console.log(`Light: ${this.value}`);
       lightRecent = this.value;
+      serverRequest('light', this.value);
     }
   });
 
