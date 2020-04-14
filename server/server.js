@@ -36,4 +36,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  next();
+});
+
 app.use('/', indexRouter);
