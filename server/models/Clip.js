@@ -5,7 +5,7 @@ const clipSchema = new mongoose.Schema({
     type: Number,
   },
   name: {
-    type: Number,
+    type: String,
   },
 });
 
