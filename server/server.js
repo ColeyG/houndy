@@ -30,7 +30,9 @@ const indexRouter = require('./routes/index');
 app.use(session({ secret: config.sessionSecret, saveUninitialized: true, resave: true }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
+  keepExtensions: true,
   extended: true,
+  uploadDir: `${__dirname}/public`,
 }));
 app.use(bodyParser.json());
 
