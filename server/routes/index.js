@@ -15,14 +15,14 @@ router.get('/ping', (req, res, next) => {
 
 router.get('/clips/getLast/:uid', (req, res, next) => {
   if (req.params.uid === '0') {
-    Clip.find().sort('time', 'descending').then((clips) => {
+    Clip.find().sort({ time: -1 }).then((clips) => {
       res
         .status(200)
         .contentType('text/json')
         .end(`{"success: "${JSON.stringify(clips)}}`);
     });
   } else {
-    Clip.find().sort('time', 'descending').limit(parseInt(req.params.uid, 10)).then((logs) => {
+    Clip.find().sort({ time: -1 }).limit(parseInt(req.params.uid, 10)).then((logs) => {
       res
         .status(200)
         .contentType('text/json')
