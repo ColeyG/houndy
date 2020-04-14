@@ -1,13 +1,7 @@
 const express = require('express');
-const multer = require('multer');
-const fs = require('fs');
 const Log = require('../models/Log');
 
 const router = express.Router();
-
-const upload = multer({
-  dest: './upload/',
-});
 
 router.get('/ping', (req, res, next) => {
   res
@@ -22,8 +16,12 @@ router.get('/clips/:uid', (req, res, next) => {
 
 });
 
-router.post('/clipSave/:uid', upload.single('video_file'), (req, res, next) => {
-  console.log(new Date());
+router.post('/clipSave/:uid', (req, res, next) => {
+  const time = new Date();
+
+  res.status(200)
+    .contentType('text/plain')
+    .end(`Clip save ${time}`);
 
   /*
   * I was trying to get this working to save the video files to a remote but restorted to using the pi's storage
