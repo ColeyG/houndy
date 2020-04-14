@@ -50,6 +50,7 @@ const executeBashCommand = (command) => {
 
 const clipRecord = () => {
   const seed = videoStamp(5);
+  const clipOriginalName = `${seed}.h264`;
   const clipFileName = `${seed}.mp4`;
   const clipName = `${__dirname}/clips/${seed}.h264`;
   const camera = new Picam({
@@ -66,7 +67,7 @@ const clipRecord = () => {
       console.log(`Recorded Clip: ${clipName}`);
       cameraOn = false;
 
-      executeBashCommand('ls');
+      executeBashCommand(`ffmpeg -framerate 24 -i clips/${clipOriginalName} -c copy clips/${clipFileName}`);
 
       http.request({
         hostname: `${config.remote}`,
