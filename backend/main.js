@@ -39,7 +39,8 @@ const checkDelta = (current, last, minDelta) => {
 };
 
 const clipRecord = () => {
-  const clipName = `${__dirname}/clips/${videoStamp(5)}.h264`;
+  const clipFileName = `${videoStamp(5)}.h264`;
+  const clipName = `${__dirname}/clips/${clipFileName}`;
   const camera = new Picam({
     mode: 'video',
     output: clipName,
@@ -57,7 +58,7 @@ const clipRecord = () => {
       http.request({
         hostname: `${config.remote}`,
         port: config.port,
-        path: `/clipSave/${clipName}`,
+        path: `/clipSave/${clipFileName}`,
         method: 'POST',
       }, (response) => {
         let str = '';
