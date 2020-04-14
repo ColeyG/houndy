@@ -54,15 +54,11 @@ const clipRecord = () => {
       console.log(`Recorded Clip: ${clipName}`);
       cameraOn = false;
 
-      const data = new FormData();
-      data.append('video_file', fs.createReadStream(clipName));
-
       http.request({
         hostname: `${config.remote}`,
         port: config.port,
-        path: '/clipSave',
+        path: `/clipSave/${clipName}`,
         method: 'POST',
-        body: data,
       }, (response) => {
         let str = '';
         response.on('data', (chunk) => {
